@@ -4,7 +4,6 @@ A modern, production-ready authentication system built with **Encore** backend a
 
 <img width="1910" height="564" alt="image" src="https://github.com/user-attachments/assets/e9b06827-18aa-43b7-b650-d0e2e6396b22" />
 
-
 ## ✨ Features
 
 - 🔐 **Secure Authentication** - JWT tokens with Better Auth
@@ -97,7 +96,7 @@ encore db migrate
 encore run
 ```
 
-The server will start at `http://localhost:4000`
+The server will start at `http://localhost:4000` then go to your encore local dashboard then in DB explorer add some dummy todos data in order to see protected endpoint in action
 
 You can access:
 
@@ -345,7 +344,7 @@ This project is licensed under the MIT License.
 
 ## 👥 Authors
 
-Built with ❤️ using modern web technologies.
+Built with ❤️ by using modern web technologies.
 
 ---
 

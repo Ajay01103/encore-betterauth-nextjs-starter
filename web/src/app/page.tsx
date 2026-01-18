@@ -1,8 +1,6 @@
 "use client"
 
-import Image from "next/image"
-import { useRouter } from "next/navigation"
-import { LogOut, Loader2, Monitor, Trash2, Clock } from "lucide-react"
+import { ProtectedRoute } from "@/components/auth/ProtectedRoute"
 import { Button } from "@/components/ui/button"
 import {
   Card,
@@ -11,16 +9,20 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
+import { useTodos } from "@/hooks/useTodos"
+import { useSignOut } from "@/modules/auth/api/useAuth"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
 import { logout } from "@/store/slices/authSlice"
-import { useSignOut } from "@/modules/auth/api/useAuth"
-import { ProtectedRoute } from "@/components/auth/ProtectedRoute"
-import { format } from "date-fns"
+import { CheckCircle2, Circle, Loader2, LogOut } from "lucide-react"
+import Image from "next/image"
+import { useRouter } from "next/navigation"
 
 export default function Home() {
   const router = useRouter()
   const dispatch = useAppDispatch()
   const { user, token, isAuthenticated } = useAppSelector((state) => state.auth)
+
+  const { data: todosData, isLoading: todosLoading } = useTodos()
 
   const signOutMutation = useSignOut({
     onSuccess: () => {
@@ -118,6 +120,50 @@ export default function Home() {
                     </div>
                   </CardContent>
                 </Card>
+              </div>
+
+              {/* Todos Section */}
+              <div className="space-y-4">
+                <div className="flex items-center justify-between">
+                  <h2 className="text-2xl font-semibold tracking-tight text-black dark:text-zinc-50">
+                    My Todos (Protected Endpont)
+                  </h2>
+                  {todosLoading && <Loader2 className="h-5 w-5 animate-spin" />}
+                </div>
+
+                {todosData?.todos && todosData.todos.length > 0 ? (
+                  <div className="grid gap-3">
+                    {todosData.todos.map((todo) => (
+                      <Card key={todo.id}>
+                        <CardContent className="py-4 px-6">
+                          <div className="flex items-center gap-3">
+                            {todo.done ? (
+                              <CheckCircle2 className="h-5 w-5 text-green-600 flex-shrink-0" />
+                            ) : (
+                              <Circle className="h-5 w-5 text-zinc-400 flex-shrink-0" />
+                            )}
+                            <span
+                              className={`text-base ${
+                                todo.done
+                                  ? "line-through text-zinc-500"
+                                  : "text-zinc-900 dark:text-zinc-100"
+                              }`}>
+                              {todo.title}
+                            </span>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                ) : (
+                  !todosLoading && (
+                    <Card>
+                      <CardContent className="py-8 text-center text-zinc-600 dark:text-zinc-400">
+                        No todos found. Add your first todo!
+                      </CardContent>
+                    </Card>
+                  )
+                )}
               </div>
             </>
           ) : (

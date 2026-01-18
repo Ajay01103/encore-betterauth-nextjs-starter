@@ -12,7 +12,7 @@ interface Response {
 }
 
 export const todos = api(
-  { method: "GET", path: "/todos", expose: true },
+  { method: "GET", path: "/todos", expose: true, auth: true },
   async (): Promise<Response> => {
     const todos = await db.query.todos.findMany()
     return { todos }
