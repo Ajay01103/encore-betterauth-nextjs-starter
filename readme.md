@@ -2,7 +2,8 @@
 
 A modern, production-ready authentication system built with **Encore** backend and **Next.js 15** frontend, featuring JWT-based authentication powered by Better Auth.
 
-<img width="1910" height="564" alt="image" src="https://github.com/user-attachments/assets/e9b06827-18aa-43b7-b650-d0e2e6396b22" />
+<img width="1918" height="909" alt="image" src="https://github.com/user-attachments/assets/c80cfea5-8b8d-468c-8018-4a86a7e178f3" />
+
 
 ## ✨ Features
 
