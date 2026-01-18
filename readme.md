@@ -61,30 +61,32 @@ iwr https://encore.dev/install.ps1 | iex
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd auth-app
+git clone https://github.com/Ajay01103/encore-betterauth-nextjs-starter
 ```
 
 ### 2. Server Setup (Encore Backend)
 
+## Docker must be installed in machine to run encore server otherwise it will throw an error
+
 ```bash
 cd server
 pnpm install
+pnpm dev
 ```
 
-#### Configure Database
+<!-- #### Configure Database
 
 Create a `.env` file in the `server` directory:
 
 ```env
 DATABASE_URL="postgresql://user:password@localhost:5432/auth_app"
-```
+``` -->
 
-#### Run Migrations
+<!-- #### Run Migrations
 
 ```bash
 encore db migrate
-```
+``` -->
 
 #### Start the Server
 
